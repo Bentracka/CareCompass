@@ -1,5 +1,13 @@
 import { deleteEntry } from "../lib/storage";
 
+function formatTime(time24) {
+  const [hourStr, minute] = time24.split(":");
+  let hour = parseInt(hourStr, 10);
+  const ampm = hour >= 12 ? "PM" : "AM";
+  hour = hour % 12 || 12; // convert 0 -> 12, 13 -> 1, etc.
+  return `${hour}:${minute} ${ampm}`;
+}
+
 export default function EntryList({ entries, onDelete }) {
   if (entries.length === 0) {
     return (
@@ -24,7 +32,7 @@ export default function EntryList({ entries, onDelete }) {
               <span className="text-sm text-gray-500">mmHg</span>
             </p>
             <p className="text-sm text-gray-500">
-              {entry.date} at {entry.time}
+              {entry.date} at {formatTime(entry.time)}
               {entry.medicationTaken ? " · Medication taken" : ""}
             </p>
             {entry.notes && (
