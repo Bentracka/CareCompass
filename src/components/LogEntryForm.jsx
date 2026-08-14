@@ -7,8 +7,16 @@ export default function LogEntryForm({ onEntryAdded }) {
   const [medicationTaken, setMedicationTaken] = useState(false);
   const [notes, setNotes] = useState("");
 
-  const today = new Date().toISOString().split("T")[0];
-  const now = new Date().toTimeString().slice(0, 5);
+  function getLocalDate() {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+}
+
+ const today = getLocalDate();
+ const now = new Date().toTimeString().slice(0, 5);
 
   function handleSubmit(e) {
     e.preventDefault();

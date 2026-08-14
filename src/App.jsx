@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import LogEntryForm from "./components/LogEntryForm";
 import EntryList from "./components/EntryList";
 import { getRecentEntries } from "./lib/storage";
+import TrendChart from "./components/TrendChart";
 
 export default function App() {
   const [entries, setEntries] = useState([]);
@@ -27,6 +28,7 @@ export default function App() {
         </header>
 
         <LogEntryForm onEntryAdded={handleEntryAdded} />
+        <TrendChart entries={entries} />
 
         <div>
           <h2 className="text-lg font-semibold mb-2">Recent Readings</h2>
