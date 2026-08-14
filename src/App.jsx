@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import LogEntryForm from "./components/LogEntryForm";
 import EntryList from "./components/EntryList";
 import TrendChart from "./components/TrendChart";
@@ -7,6 +6,7 @@ import ReminderSettings from "./components/ReminderSettings";
 import { getRecentEntries } from "./lib/storage";
 import { checkAlert } from "./lib/alerts";
 import SummaryExport from "./components/SummaryExport";
+import { useState, useEffect, useRef } from "react";
 
 export default function App() {
   const [entries, setEntries] = useState([]);
@@ -24,6 +24,7 @@ export default function App() {
   }
 
   const alert = checkAlert(entries);
+  const chartRef = useRef(null);
 
   return (
     <div className="min-h-screen py-8 px-4">
@@ -37,9 +38,9 @@ export default function App() {
 
         <LogEntryForm onEntryAdded={handleEntryAdded} />
 
-        <TrendChart entries={entries} />
+        <TrendChart entries={entries} chartRef={chartRef} />
 
-        <SummaryExport entries={entries} />
+        <SummaryExport entries={entries} chartRef={chartRef} />
 
         <div>
           <h2 className="text-lg font-semibold mb-2">Recent Readings</h2>

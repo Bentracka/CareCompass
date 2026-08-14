@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function TrendChart({ entries }) {
+export default function TrendChart({ entries, chartRef }) {
   const [range, setRange] = useState(7);
 
   const chartData = useMemo(() => {
@@ -59,35 +59,25 @@ export default function TrendChart({ entries }) {
         </div>
       </div>
 
-      {chartData.length === 0 ? (
-        <p className="text-gray-500 text-center py-8">
-          No readings in this range yet.
-        </p>
-      ) : (
-        <ResponsiveContainer width="100%" height={250}>
-          <LineChart data={chartData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-            <XAxis dataKey="label" tick={{ fontSize: 12 }} />
-            <YAxis tick={{ fontSize: 12 }} domain={["dataMin - 10", "dataMax + 10"]} />
-            <Tooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="systolic"
-              stroke="#2563eb"
-              strokeWidth={2}
-              dot={{ r: 3 }}
-            />
-            <Line
-              type="monotone"
-              dataKey="diastolic"
-              stroke="#60a5fa"
-              strokeWidth={2}
-              dot={{ r: 3 }}
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      )}
+     {chartData.length === 0 ? (
+  <p className="text-gray-500 text-center py-8">
+    No readings in this range yet.
+  </p>
+) : (
+  <div ref={chartRef}>
+    <ResponsiveContainer width="100%" height={250}>
+      <LineChart data={chartData}>
+        <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+        <XAxis dataKey="label" tick={{ fontSize: 12 }} />
+        <YAxis tick={{ fontSize: 12 }} domain={["dataMin - 10", "dataMax + 10"]} />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="systolic" stroke="#2563eb" strokeWidth={2} dot={{ r: 3 }} />
+        <Line type="monotone" dataKey="diastolic" stroke="#60a5fa" strokeWidth={2} dot={{ r: 3 }} />
+      </LineChart>
+    </ResponsiveContainer>
+  </div>
+)}
     </div>
   );
 }
