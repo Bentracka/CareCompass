@@ -6,6 +6,7 @@ import AlertBanner from "./components/AlertBanner";
 import ReminderSettings from "./components/ReminderSettings";
 import { getRecentEntries } from "./lib/storage";
 import { checkAlert } from "./lib/alerts";
+import SummaryExport from "./components/SummaryExport";
 
 export default function App() {
   const [entries, setEntries] = useState([]);
@@ -37,6 +38,8 @@ export default function App() {
         <LogEntryForm onEntryAdded={handleEntryAdded} />
 
         <TrendChart entries={entries} />
+
+        <SummaryExport entries={entries} />
 
         <div>
           <h2 className="text-lg font-semibold mb-2">Recent Readings</h2>
