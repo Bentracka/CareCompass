@@ -7,6 +7,7 @@ import { getRecentEntries } from "./lib/storage";
 import { checkAlert } from "./lib/alerts";
 import SummaryExport from "./components/SummaryExport";
 import { useState, useEffect, useRef } from "react";
+import { generateSampleEntries } from "./lib/sampleData";
 
 export default function App() {
   const [entries, setEntries] = useState([]);
@@ -21,6 +22,19 @@ export default function App() {
 
   function handleDelete() {
     setEntries(getRecentEntries());
+  }
+
+  function handleLoadDemoData() {
+    const sample = generateSampleEntries();
+    localStorage.setItem("carecompass_entries", JSON.stringify(sample));
+    setEntries(getRecentEntries());
+  }
+
+  function handleClearAllData() {
+    if (confirm("This will delete all entries. Are you sure?")) {
+      localStorage.removeItem("carecompass_entries");
+    setEntries([]);
+    }
   }
 
   const alert = checkAlert(entries);
@@ -48,6 +62,20 @@ export default function App() {
         </div>
 
         <ReminderSettings />
+        <div className="text-center pt-2 pb-4 space-x-4">
+      <button
+     onClick={handleLoadDemoData}
+      className="text-xs text-gray-400 hover:text-gray-600 underline"
+      >
+      Load demo data
+   </button>
+    <button
+     onClick={handleClearAllData}
+     className="text-xs text-gray-400 hover:text-gray-600 underline"
+      >
+      Clear all data
+    </button>
+    </div>
       </div>
     </div>
   );

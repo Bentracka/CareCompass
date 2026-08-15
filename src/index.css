@@ -1,6 +1,18 @@
 @import "tailwindcss";
 
+html {
+  font-size: 18px; /* larger base size than the default 16px, improves readability app-wide */
+}
+
 body {
   background-color: #f9fafb;
   color: #111827;
+}
+
+button {
+  min-height: 44px; /* comfortable tap target size */
+}
+
+input, textarea {
+  font-size: 1rem !important; /* prevents iOS Safari from auto-zooming into inputs */
 }

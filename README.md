@@ -1,16 +1,19 @@
-# React + Vite
+# CareCompass
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, free tool to help patients track blood pressure at home and share clean, organized readings with their doctor.
 
-Currently, two official plugins are available:
+## What it does
+- Log daily blood pressure readings (with optional notes and medication tracking)
+- View trends over 7 or 30 days
+- Get a gentle heads-up if readings have been out of range for a few days
+- Export a clean PDF summary to bring to doctor visits
+- Installable on a phone home screen — works like a normal app, no app store needed
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What it does NOT do
+This is a personal tracking tool. It does not diagnose conditions, does not replace medical advice, and does not store data anywhere except the user's own device.
 
-## React Compiler
+## Status
+v1 — built as a pilot to explore partnering with local health centers on patient-friendly tracking tools.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech
+React + Vite, Tailwind CSS, Recharts, jsPDF, installable as a PWA.
