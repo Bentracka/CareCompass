@@ -2,6 +2,7 @@ import { useState } from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import html2canvas from "html2canvas";
+import { track } from "@vercel/analytics";
 
 function formatTime(time24) {
   const [hourStr, minute] = time24.split(":");
@@ -27,6 +28,7 @@ export default function SummaryExport({ entries, chartRef }) {
 
   async function handleExport() {
     setExporting(true);
+    track("pdf_export");
     try {
       const pdf = new jsPDF({ orientation: "portrait", unit: "pt", format: "letter" });
 
