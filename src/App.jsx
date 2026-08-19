@@ -8,6 +8,7 @@ import { checkAlert } from "./lib/alerts";
 import SummaryExport from "./components/SummaryExport";
 import { useState, useEffect, useRef } from "react";
 import { generateSampleEntries } from "./lib/sampleData";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   const [entries, setEntries] = useState([]);
@@ -77,6 +78,7 @@ export default function App() {
     </button>
     </div>
       </div>
+      <Analytics />
     </div>
   );
 }
